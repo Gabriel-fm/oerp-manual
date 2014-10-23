@@ -1,0 +1,130 @@
+\documentclass[a4paper,oneside]{report}
+
+%%%
+%%% Para insertar imágenes
+%%%
+\usepackage[pdftex]{graphicx}
+
+%%%
+%%% Nombres de secciones y demás en castellano
+%%%
+\usepackage[spanish]{babel}
+
+
+%%%
+%%% Permite introducir caracteres castellanos
+%%%
+\usepackage[utf8]{inputenc}
+
+\usepackage{float}
+\usepackage[pdfborder={0 0 0}]{hyperref}
+%%%%%%
+%% Añade un marco a las imágenes
+%%%%%%
+\floatstyle{boxed}
+\restylefloat{figure}
+
+
+
+%%%
+%%%  Márgenes de las hojas
+%%%
+\usepackage[top=2cm, bottom=1.25in, left=2cm, right=2cm]{geometry}
+
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+%%\usepackage{listings}
+
+
+%%%
+%%%  Insertar una imagen rápidamente
+%%%
+\newcommand{\figura}[3]{
+	\begin{figure}[H]
+		\includegraphics[width=\textwidth]{#1}
+		\caption{#2}
+		\label{#3}
+	\end{figure}
+}
+
+%\newcommand{\figuraCap}[4]{
+%	\begin{figure}[H]
+%		\includegraphics[width=\textwidth]{#1}
+%		\caption{[#2]#3}
+%		\label{#4}
+%	\end{figure}
+%}
+
+
+
+%%%
+%%%   Datos
+%%%
+\title{OpenERP - Guía de usuario}
+
+\author{Sicnova 3D Murcia}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+
+%%%
+%%%  Portada
+%%%
+\input{./title.tex}
+
+
+%\maketitle
+%%%
+%%%  Aviso licencia
+%%%
+\input{./licencia.tex}
+\tableofcontents
+
+
+
+%\include{general/general}
+
+%\include{productos/productos}
+
+\include{ventas/ventas}
+
+\include{contabilidad/contabilidad}
+
+\include{almacen/almacen}
+
+
+%%%
+%%%  Anexos
+%%%
+\part*{Anexos}
+\addcontentsline{toc}{part}{Anexos}
+
+%%%
+%%% Información sobre el documento
+%%%
+\addcontentsline{toc}{chapter}{Sobre este documento}
+\include{info}
+
+%%%
+%%% Historial de cambios
+%%%
+\addcontentsline{toc}{chapter}{Historial de cambios}
+\include{historial}
+
+
+%%%
+%%%  Texto Licencia GFDL
+%%%
+\include{license}
+
+
+
+%\listoffigures
+%\listoftables
+\end{document}
