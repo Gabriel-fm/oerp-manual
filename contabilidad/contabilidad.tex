@@ -1,6 +1,26 @@
+%
+% Este archivo es parte de un documento sobre OpenERP/Odoo creado
+% y distribuido bajo licencia GNU Free Documen License v1.3.
+%
+% Para obtener la fuente e información más detallada, visite
+% https://github.com/Gabriel-fm/oerp-manual
+%
+% Copyright (c) 2014 - Gabriel Franco
+%
+
 \chapter{Módulo de Contabilidad}
 
-%\section{Conceptos generales de Contabilidad}
+\section{Conceptos previos de Contabilidad}
+
+En este módulo se utilizan lo que se conocen como \textbf{diarios}.
+
+Los \textbf{diarios} no son más que una forma más de agrupar los datos. Las facturas, por ejemplo, pueden guardarse en distintos \emph{diarios}. Esto, al final, no influye en ningún elemento de la factura ni en la gestión de las mismas, siguen siendo las mismas facturas con los mismos datos y los mismos efectos. La diferencia está en que después se puede hacer una busqueda o realizar listados por diarios.
+
+Pueden entenderse estos diarios como carpetas físicas. Las facturas pueden guardarse -- hablando de facturas impresas -- en el mismo lugar y, a la vez, ordenadas en carpetassegún la necesidad, para una mayor organización.
+
+De igual modo, los \textbf{asientos contables} son otro ejemplo de elementos clasificables en diarios. Siguen siendo asientos contables y no se ven alterados por el diario en el que sean almacenados. En este caso se pueden utilizar, por ejemplo, como se ve en la sección \ref{con:asentar}, que puede asentarse todos los asientos de un diario, ahorrando la selección de los mismos.
+
+
 
 \section{Clientes}
 
@@ -91,8 +111,7 @@ También aparece el \textbf{Diario} en el que se registra el pago y los campos \
 
 \subsubsection{Pago de facturas}
 
-La manera más cómoda de registrar los pagos de las facturas es a través de las mismas facturas. Cuando una factura ha sido validada, aparecerá un botón en la zona superior denominado \textbf{Registrar pago} tal como se aprecia en la figura \ref{con:facpagos}. Hacer click
-en este botón presentará la pantalla de registro de pago que se ve a continuación en la figura \ref{con:facpagar}
+La manera más cómoda de registrar los pagos de las facturas es a través de las mismas facturas. Cuando una factura ha sido validada, aparecerá un botón en la zona superior denominado \textbf{Registrar pago} tal como se aprecia en la figura \ref{con:facpagos}. Hacer click en este botón presentará la pantalla de registro de pago que se ve a continuación en la figura \ref{con:facpagar}
 
 \figura{contabilidad/img/con_facpagos.png}
 {Botones que aparecen en una factura abierta}
@@ -113,8 +132,7 @@ En el momento en el que la suma de los pagos alcance el total de la factura, est
 
 \subsection{Facturas rectificativas de cliente}
 
-Las \textbf{facturas rectificativas} son, en funcionamiento y en presentación, exactamente iguales que las facturas de cliente vistas 
-en la sección anterior.
+Las \textbf{facturas rectificativas} son, en funcionamiento y en presentación, exactamente iguales que las facturas de cliente vistas en la sección anterior.
 
 Cabe destacar que no es necesario, en la factura rectificativa, añadir cantidades en negativo. Al crear una factura rectificativa se da por sentado que las cantidades no son a cobrar por parte de los clientes, sino a reintegrar a los mismos. Esto quiere decir que una factura rectificativa que incluya, por ejemplo, una impresora, es señal de que se está haciendo una devolución de la misma por parte del cliente al que se le ha vendido -- todo en cifas positivas en la factura.
 
@@ -131,12 +149,12 @@ Una segunda forma de crear facturas rectificativas es a través del botón \text
 Los campos obligatorios son, por un lado, el \textbf{Motivo}, de manera que se indique la razón de la rectificación de la factura, y el \textbf{Método de abono}, que determina como se crea la factura rectificativa. Las opciones de este método de pago y su funcionamiento son:
 
 \begin{itemize}
-  \item[Crear una factura rectificativa borrador] -- Crea una factura rectificativa en el estado de borrador para ser modificada por el
+  \item \textbf{Crear una factura rectificativa borrador} -- Crea una factura rectificativa en el estado de borrador para ser modificada por el
             usuario, pudiendo rectificar líneas de productos
-  \item[Cancelar] -- Esta opción considera que la factura no debería haber sido creada, así pues, crea una factura rectificativa que
+  \item \textbf{Cancelar} -- Esta opción considera que la factura no debería haber sido creada, así pues, crea una factura rectificativa que
             anula aquella que se esté reintegrando, validandola y conciliando la factura de cliente y la rectificativa. La factura 
             rectificativa creada es automáticamente validada, no es posible editarla.
-  \item[Modificar] -- Con la elección de esta opción se indica que se quiere modificar la factura. Como, en teoría, las facturas
+  \item \textbf{Modificar} -- Con la elección de esta opción se indica que se quiere modificar la factura. Como, en teoría, las facturas
             validadas y con una numeración asignada no pueden ser modificadas, esta opción crea una factura rectificativa que cancela -- 
             como la opción anterior -- la factura y las concilia y crea una nueva factura identica a la que se modifica en estado 
             de borrador. 
@@ -149,28 +167,28 @@ Los campos obligatorios son, por un lado, el \textbf{Motivo}, de manera que se i
 
 \subsection{Recibo de ventas}
 
-Los recibos de ventas son los tickets de ventas que se dan a los clientes. 
+Los recibos de ventas se utilizan para introducir los movimientos contables sin necesidad del uso de una factura. Serían los movimientos generados por un ticket de venta. 
 
 Para estos elementos (puede verse una pantalla de edición en la figura \ref{con:recedita}) los datos mínimos necesarios son:
 
 \begin{itemize}
 
-  \item[Cuenta] -- Cuenta contable en la que se registrará el pago. Si se elige un cliente y se tiene configurada una cuenta para el
+  \item \textbf{Cuenta} -- Cuenta contable en la que se registrará el pago. Si se elige un cliente y se tiene configurada una cuenta para el
           mismo
-  \item[Pago] -- Hay que indicar la forma de pago
+  \item \textbf{Pago} -- Hay que indicar la forma de pago
       \begin{itemize}
-         \item[Pagar directamente] -- Se interpreta que el pago ha sido inmediato
-         \item[Pagar tarde o agrupar fondos] -- De esta manera se interpreta que el pago se realizará en una fecha determinada que se puede
+         \item \textbf{Pagar directamente} -- Se interpreta que el pago ha sido inmediato
+         \item \textbf{Pagar tarde o agrupar fondos} -- De esta manera se interpreta que el pago se realizará en una fecha determinada que se puede
               introducir bajo este campo (sólo aparecerá la opción de rellenar una fecha si se elige esta opción)
       \end{itemize}
 
-  \item[Elementos de la venta] -- Se añaden en la pestaña de \textbf{Información de ventas}. Dentro de éste, hay que completar cuatro
+  \item \textbf{Elementos de la venta} -- Se añaden en la pestaña de \textbf{Información de ventas}. Dentro de éste, hay que completar cuatro
  campos:
       \begin{itemize}
-         \item[Cuenta] -- Cuenta contable referente a la venta (por ejemplo, la 7000000)
-         \item[Descripción] --  Descripción de los productos que se venden.
-         \item[Importe] -- Precio de la compra
-         \item[Impuesto] -- En el caso de aplicar IVA a la compra, habrá que especificarlo en este campo
+         \item \textbf{Cuenta} -- Cuenta contable referente a la venta (por ejemplo, la 7000000)
+         \item \textbf{Descripción} --  Descripción de los productos que se venden.
+         \item \textbf{Importe} -- Precio de la compra
+         \item \textbf{Impuesto} -- En el caso de aplicar IVA a la compra, habrá que especificarlo en este campo
       \end{itemize}
 \end{itemize}
 
@@ -216,8 +234,7 @@ Desde esta misma sección se pueden crear esos pagos de clientes, no obstante, y
 
 
 \subsection{Clientes}
-Los datos que se van a ver aquí son los mismos que se han explicado en la sección \ref{ven:clientes} (Vease esta sección para la explicación
-de estos datos)
+Los datos que se van a ver aquí son los mismos que se han explicado en la sección \ref{ven:clientes} (Vease esta sección para la explicación de estos datos)
 
 Al seleccionar esta opción del menú, los datos presentados son aquellos clientes que tengan marcado, en la pestaña de ventas y compras de la ficha del mismo, la opción de \emph{Cliente}, situado encima de la otra opción \emph{Proveedor}. Se puede ver dicha opción en la imagen ref{con:fichacliente}
 
@@ -247,7 +264,7 @@ Al seleccionar esta opción del menú, los datos presentados son aquellos client
 {con:fichacliente2}
 
 
-\subsection{Resto de subsecciones}
+\subsection{Otras secciones de proveedor}
 
 El resto de secciones en el área de proveedores corresponden a exactamente lo mismo que en el área de clientes, pero con la orientación contraria. 
 
@@ -264,7 +281,295 @@ La sección de \textbf{Pagos a proveedores} aglutina las distintas transacciones
 
 
 
-%\section{Banco y caja}
+\section{Banco y caja}
+\subsection{Extractos bancarios}
+El software permite la introducción y almacenaje de los extractos bancarios. Cuando se edita un extracto se puede ver la pantalla
+representada en la figura \ref{con:banextractos}.
+
+Con el \textbf{saldo inicial} introducido, el \textbf{saldo final} es calculado en función de las transacciones introducidas en el 
+extracto.
+
+Cabe la posibilidad de insertar cada transacción a mano en las líneas inferiores o bien utilizar el botón \textbf{Importar Facturas}, desde la cual se pueden seleccionar facturas pendientes de cobro o de pago. Con esta acción, se añadirán automáticamente líneas en el extracto con la información de la factura. Por defecto, en el extracto se supone que se paga toda la factura (o lo que queda por pagar de la misma), pero es modificable por el usuario. En el caso de que se realice un pago que complete la factura, se indicará mediante un icono verde a la derecha de la línea, mientras que si no concilia por completo el pago, lo mostrará con un icono rojo.
+
+Cuando el extracto es confirmado, se generarán los asientos a los que hace referencia el extracto, con las cantidades, cuentas y clientes indicados en las lineas del mismo.
+
+\figura{contabilidad/img/con_banextractos.png}
+{Extracto bancario}
+{con:banextractos}
+
+
+
+%\subsection{Registros de caja}
+
+
+
+
+
+
+
+\section{Asientos contables}
+
+\subsection{Apuntes contables}
+\figura{contabilidad/img/con_apuapuntes.png}
+{Listado de apuntes contables}
+{con:apuapuntes}
+
+En la pantalla de apuntes contables se presentará, en forma de listado y filtrado por \textbf{Periodo} y \textbf{Diario} -- como se aprecia en la parte superior izquierda del mismo listado -- todos los apuntes contables (figura \ref{con:apuapuntes})
+
+
+
+Desde este mismo punto es posible crear nuevos apuntes contables pulsando sobre el boton \textbf{Crear} y rellenando todos los datos adecuadamente. Hay que tener claro que siempre se ha de situar el mismo valor en el campo \emph{Asiento contable} si lo que se está creando son las partidas y contrapartidas de un asiento ya que sólo se consideran como parte de un mismo asiento, si coinciden en este campo. En caso contrario se entienden como apuntes sueltos, no relacionados con ningún asiento.	
+
+
+
+\subsection{Asientos contables}
+
+La opción de \emph{Asientos contables} mostrará todos los asientos, sin filtrar ni por periodo ni por diario como en el caso de los apuntes. La figura \ref{con:apuasientos} muestra la presentación de los mismos.
+
+\figura{contabilidad/img/con_apuasientos.png}
+{Listado de asientos contables}
+{con:apuasientos}
+
+Los campos que se pueden ver son:
+
+\begin{itemize}
+  \item \textbf{Nombre} -- Nombre del apunte
+  \item \textbf{Referencia} -- Referencia que puede apuntar a facturas u otros documentos.
+  \item \textbf{Fecha} -- Fecha de creación del apunte
+  \item \textbf{Periodo} -- Periodo del ejercicio fiscal al que pertenece el apunte.
+  \item \textbf{Diario} -- Diario en el que se introduce el apunte.
+  \item \textbf{Empresa} -- Empresa cliente (o proveedor) relacionada con esta entrada.
+  \item \textbf{Importe} -- Valor total del importe contenido en el apunte.
+  \item \textbf{A revisar} -- Permite marcar el asiento en el estado "A revisar" para que un supervisor encargado lo revise dado el caso.
+                            No tiene efecto sobre el asiento en ningún aspecto, tan sólo lo etiqueta para su revisión posterior.
+  \item \textbf{Estado} -- Estado en el que se encuentra el asiento. En este caso sólo hay dos estados
+     \begin{itemize}
+       \item No asentado
+       \item Asentado
+     \end{itemize}
+\end{itemize}
+
+Bien utilizando el botón \textbf{Crear} o pulsando sobre uno de los asientos, se puede acceder para ver y editar -- en el caso de que no se encuentre asentado -- cualquier asiento individual. Lo que el usuario verá está presentado en la figura  \ref{con:apuasientoeditar}
+
+\figura{contabilidad/img/con_apuasientoeditar.png}
+{Listado de asientos contables}
+{con:apuasientoeditar}
+
+El \textbf{Diario} y el \textbf{Periodo} son seleccionables por el usuario y obligatorios. El campo de \textbf{Referencia} es opcional, es autorellenado en caso de que el asiento sea creado automáticamente a partir de una factura o algún otro documento, al igual que los campos de \emph{Diario} y \emph{Periodo}.
+
+En la pestaña de \textbf{Apuntes contables} se pueden ver e introducir los apuntes correspondientes al asiento, los campos a rellenar de los que se dispone son:
+
+\begin{itemize}
+
+  \item \textbf{Nombre} -- El nombre del apunte.
+  \item \textbf{Empresa} -- Empresa relacionada con el apunte. No es obligatoria.
+  \item \textbf{Cuenta} -- Cuenta a la que hace referencia esa línea de apunte.
+  \item \textbf{Fecha de vencimiento} -- Fecha límite para el pago de la línea.
+  \item \textbf{Debe -- Haber} -- Campos para introducir la información de Debe y Haber del apunte.
+  \item \textbf{Importe divisa} -- En el caso de un asiento multidivisa, aquí debe insertarse el valor de la misma.
+  \item \textbf{Cuenta impuesto} -- Cuenta de un impuesto a la que hace referencia el apunte. En este caso hace referencia al código del impuesto, no a la cuenta del mismo (la cual se insertaría en el campo \emph{cuenta}).
+  \item \textbf{Importe Impuesto/base} -- Se introduce el valor del monto del impuesto o la base impositiva en función del tipo de cuenta. En el caso de cuentas de tipo impositivo, se utiliza el monto del impuesto. En caso contrario introduce el monto de la base imponible.
+  \item \textbf{Estado} -- No es editable por el usuario. Indica si el apunte está cuadrado o no, pudiendo saber si el asiento cuadra finalmente.
+  \item \textbf{Conciliar} -- No editable por el usuario. Cuando se realiza la conciliación de los apuntes, se indica en este campo la referencia a la conciliación.
+  \item \textbf{Conciliación parcial} -- No editable por el usuario. Igual que en el caso anterior, pero se aplica en el caso de conciliaciones parciales.
+\end{itemize}
+
+
+%\subsection{Diarios de comprobantes}
+
+
+
+
+
+
+
+\section{Planes contables}
+
+Las opciones disponibles  en esta sección se encargan de generar las tablas, en formato legible en pantalla sobre el plan contable actual y sus cuentas y la información sobre impuestos que se encuentra en la contabilidad de la base de datos.
+
+\subsection{Plan contable}
+
+Para la obtención del plan se presenta un diálogo en el que se selecciona tanto el ejercicio fiscal como el rango de \textbf{periodos} entre los que se quiere obtener la información, seleccionando además si para este informe se utilizará la información contenida sólo en los
+asientos asentados o la información de todos los asientos -- no asentados incluidos.
+
+El diálogo para la configuración del plan se puede ver en la figura \ref{con:plancontable} y la presentación en pantalla del mismo se puede ver en la figura \ref{con:plancontablefinal}
+
+\figura{contabilidad/img/con_plancontable.png}
+{Diálogo para la creación del plan contable}
+{con:plancontable}
+
+\figura{contabilidad/img/con_plancontablefinal.png}
+{Presentación en pantalla del plan contable}
+{con:plancontablefinal}
+
+Si en alguna de las líneas que se ven en el plan contable, se hace click, se abrirá para ver en mayor detalle los asientos correspondientes a esa cuenta seleccionada.
+
+\subsection{Impuestos}
+
+De igual manera que en la sección anterior, al acceder a esta opción se presenta un diálogo para definir que impuestos analizar. La elección en este caso se reduce a un \textbf{periodo} (trimestre, mes...) En caso de que se deje vacio ese campo, el informe se hará  analizando todos los periodos que no esten cerrados.
+
+Otra opción disponible es, al igual que en el informe del plan contable, si para la creación del informe se tendrán en cuenta los asientos asentados o todos, inclusive los que no están asentados (Opción \textbf{Movimientos destino}
+
+En las siguientes figuras se puede ver el diálogo para definir el informe (\ref{con:planimpuestos}) y la presentación en pantalla de la información (\ref{con:planimpuestosfinal})
+
+\figura{contabilidad/img/con_planimpuestos.png}
+{Diálogo para la obtención del informe de impuestos}
+{con:planimpuestos}
+
+\figura{contabilidad/img/con_planimpuestosfinal.png}
+{Presentación en pantalla del informe sobre impuestos}
+{con:planimpuestosfinal}
+
+Además, haciendo click sobre alguno de los impuestos, se abrirá en más detalle los movimientos (asientos) relacionados con ese impuesto.
+
+
+\section{Procesamiento periódico}
+
+
+\subsection{Asientos Borrador}
+\label{con:asentar}
+La única opción dentro de esta subsección es \textbf{Asentar asientos}. Como su propio nombre indica, es una utilidad para asentar todos esos asientos que no se encontraran ya en ese estado.
+
+Esta opción abrirá un diálogo (figura \ref{con:aseasientos}) a través del cuál se seleccionará el \textbf{Diario} de asientos que se quiere asentar y el \textbf{periodo}. Tras seleccionar ambos elementos se asentarán todos esos elementos que entren dentro 
+de las opciones seleccionadas.
+
+\figura{contabilidad/img/con_aseasientos.png}
+{Dialogo de asentamiento de asientos}
+{con:aseasientos}
+
+
+
+\subsection{Conciliación}
+
+\subsubsection{Conciliación manual}
+
+En esta opción se presentará una lista de todos los movimientos (asientos) no conciliados, organizados por empresas a las que pertenecen estos movimientos. La vista general es la que se observa en la figura \ref{con:conmanual}
+
+\figura{contabilidad/img/con_conmanual.png}
+{Pantalla de conciliación manual}
+{con:conmanual}
+
+A través de esta pantalla se pueden seleccionar distintos asientos no conciliados y aceptar la conciliación entre ellos. Cuando esta selección y acción se realiza, aparece un diálogo para la confirmación de la conciliación (figura \ref{con:conmanuald1})
+
+\figura{contabilidad/img/con_conmanual_d1.png}
+{Diálogo de conciliación manual}
+{con:conmanuald1}
+
+Si el importe del desajuste fuese igual a cero, se permitiría realizar una \textbf{Conciliación total}. En el caso de que no lo sea -- como en el ejemplo --, puede realizarse una conciliación parcial o una conciliación con desfase. La \textbf{Conciliación parcial} se utiliza si el cliente va a pagar sólo parte de la factura, dejando conciliados los asientos. Con la \textbf{Conciliación con desfase} crea un movimiento de desajuste para su conciliación a posteriori.
+
+Con la opción de \emph{Conciliación con desfase} se presentará a su vez un diálogo para crear ese Movimiento de desajuste, diálogo que es exactamente igual que la parte inferior del diálogo de conciliación automática (figura \ref{con:conauto}). En este diálogo se completa la información sobre ese movimiento, la cuenta, diario y periodo en el que se creará el desajuste.
+
+
+\subsubsection{Conciliación automática}
+Para que una factura se considere pagada, los apuntes contables de la mismas deben estar conciliados con sus contrapartidas, normalmente pagos. Con esta función de conciliación automática, el programa realiza una búsqueda de apuntes a conciliar en las cuentas en las que se le indica. Encuentra los apuntes, de acorde a las empresas, cuando las cantidades se corresponden realiza la conciliación de esos apuntes. 
+
+La siguiente figura muestra el diálogo de conciliación automática.
+
+\figura{contabilidad/img/con_conauto.png}
+{Diálogo de conciliación automática}
+{con:conauto}
+
+En el área superior y mediante el botón \textbf{Agregar}, se añaden las cuentas en las que se realizará la busqueda de asientos a conciliar. Como se puede apreciar, muestra información sobre esas cuentas, incluyendo entre otras, información sobre el \textbf{debe} y el \textbf{haber}, mostrando también el \textbf{saldo pendiente}.
+
+El campo \textbf{Fuerza} se refiere al número de importes parciales máximo que pueden agruparse para encontrar una conciliación. Esto quiere decir que, en función de todos los asientos disponibles, los combinará entre ellos (con un máximo de elementos combinados definidos por este campo) para comprobar cuales cuadran para ser conciliados.
+
+Si se selecciona la opción \textbf{Permitir desfase}, creará una entrada en la \emph{cuenta}, \emph{diario} y \emph{periodo} indicados en la parte inferior del diálogo -- la parte bajo el nombre \textbf{Movimiento de desajuste} -- donde también se puede indicar el importe máximo para el que se puede crear esa entrada de desajuste.
+
+
+
+
+\subsection{Asientos recurrentes}
+
+En esta sección se pueden definir y generar asientos que se repitan en el tiempo. Pueden categorizarse aquí elementos como algunos alquileres o gastos que se conocen fijos cada cierto periodo de tiempo.
+
+\subsubsection{Definir asientos recurrentes}
+
+La pantalla a la que se accede a través de ésta sección muestra la lista de asientos que se repiten a lo largo del tiempo. Cada una de estas entradas es accesible de forma individual, pudiendo verse la pantalla como la que se muestra en la figura \ref{con:reclista}.
+
+\figura{contabilidad/img/con_reclista.png}
+{Edición de asiento recurrente}
+{con:reclista}
+
+En la creación de estos asientos recurrentes es necesario el uso de un \textbf{modelo} (que se puede ver más adelante), usar un \textbf{Nombre} para referenciarse al mismo, e indicarle una \textbf{Fecha inicial}, una \textbf{unidad de tiempo} y un \textbf{ periodo} (cada cuantas unidades de tiempo se repetirá el asiento) además del \textbf{número de periodos}, es decir, el número de repeticiones.
+
+Cuando todas esas opciones se encuentran seleccionadas, se puede hacer uso del botón \textbf{Calcular}. Este botón creará los apuntes (que no los asientos) periódicos y los mostrará en la lista inferior (\emph{Apuntes de asientos periódicos}). El ejemplo anterior mostraría lo que se ve en la figura \ref{con:reclistacal}.
+
+\figura{contabilidad/img/con_reclistacal.png}
+{Apuntes de asientos periódicos calculados}
+{con:reclistacal}
+
+Sin embargo, se aprecia que los campos \emph{Asiento} no está completado. Con esto, se ha calculado donde estarán los asientos, no los asientos en sí. Para generarlos, debe usarse la siguiente opción en el menú (\emph{Generar asientos}). Una vez generados, se enlazarán en estos campos del listado.
+
+De igual manera, se puede seleccionar, pulsando sobre el apunte en la lista, un asiento ya creado.
+
+
+\subsubsection{Generar asientos}
+
+Esta opción mostrará el diálogo que se aprecia en la figura \ref{con:recgenerar}. Mediante este, se selecciona una fecha \textbf{hasta la cual} se generarán todos los asientos de los asientos recurrentes que no tengan creados esos asientos. 
+
+Siguiendo el ejemplo anterior, utilizar la fecha a tres meses de la actual, generará tres asientos de alquiler, que además se reflejará en la lista de apuntes del asiento recurrente (el listado visto en la figura \ref{con:reclistacal})
+
+\figura{contabilidad/img/con_recgenerar.png}
+{Diálogo de generación de asientos}
+{con:recgenerar}
+
+
+\subsubsection{Modelos}
+
+Los modelos hacen referencia a las entradas del asiento que compondrán cada asiento recurrente. Para el ejemplo del alquiler, se rellenarían los datos tal y como se haría para crear los asientos referidos a un alquiler. Con ello, cada vez que se cree un asiento de este modelo, ese asiento contendrá únicamente esos datos, con las fechas adecuadas en cada caso.
+
+
+\figura{contabilidad/img/con_recmodelo.png}
+{Edición de un model de asiento recurrente}
+{con:recmodelo}
+
+
+
+
+\subsection{Fin de periodo}
+
+\subsubsection{Cerrar un periodo}
+A través de este elemento, se presentará un listado de los periodos actualmente abiertos (figura \ref{con:finperiodo}). En esta lista se puede seleccionar uno o varios periodos y utilizar el menú desplegable \emph{Más} para seleccionar la opción \textbf{cerrar}.
+
+Otra opción es entrando en la visión individual de periodo, haciendo click sobre el que se desée en la lista, y utilizar el botón \textbf{Cerrar periodo} que aparece en la ficha del mismo.
+
+\figura{contabilidad/img/con_finperiodo.png}
+{Listado de periodos a cerrar}
+{con:finperiodo}
+
+
+\subsubsection{Generar asientos de apertura}
+Esta opción del menú mostrará un diálogo para generar los asientos de apertura de un ejercicio fiscal en base a los datos del
+ejercicio fiscal anterior.
+
+Se ha de indicar el \textbf{ejercicio a cerrar} y el \textbf{ejercicio a abrir}, además de el \textbf{diario} y \textbf{periodo} en 
+los que se crearán los asientos de apertura, pudiendo además añadirle un \textbf{Nombre} a esos asientos para poder 
+identificarlos apropiadamente.
+
+\figura{contabilidad/img/con_finapertura.png}
+{Diálogo de generación de asientos de apertura}
+{con:finapertura}
+
+
+
+\subsubsection{Cancelar apuntes de cierre}
+
+Esta opción del menú abrirá el diálogo que permite cancelar los apuntes de cierre del año fiscal. Sólo será necesario indicarle
+el año fiscal del que hay que cancelar los asientos
+
+\figura{contabilidad/img/con_fincancelar.png}
+{Diálogo de cancelación de asientos de cierre}
+{con:fincancelar}
+
+
+
+\subsubsection{Cerrar un ejercicio fiscal}
+
+Cierra un ejercicio fiscal. El diálogo sólo requerirá de indicarle que ejercicio es el que se debe cerrar.
+
+\figura{contabilidad/img/con_fincierre.png}
+{Diálogo de cierre del año fiscal}
+{con:fincierre}
 
 
 
@@ -273,29 +578,19 @@ La sección de \textbf{Pagos a proveedores} aglutina las distintas transacciones
 
 
 
-%\section{Asientos contables}
 
+\section{Informe}
 
+Este menú permite la generación de distintos informes sobre la contabilidad de la empresa agrupando los datos según los mismos. Genera un archivo PDF en cada ocasión.
 
+Para generar los distintos informes, todos siguen un patrón relativamente fijo al poder filtrar los resultados por fecha, por periodos o por otros parametros como -- por ejemplo en los balances -- aquellas cuentas cuyo total no sea cero.
 
+Cada una de las opciones de informes abrirá una ventana emergente con las distintas opciones para la generación de dichos informes. Generar los informes no modifica ninguna información existente en la base de datos, pudiendo por lo tanto generar todos los que sean necesarios sin temor a modificar nada.
 
+%\subsection{Informes legales}
+%\subsubsection{Informes contables}
+%\subsubsection{Diarios}
 
-
-
-
-%\section{Planes contables}
-
-
-
-
-
-
-
-%\section{Procesamiento periódico}
-
-
-
-
-
-
-%\section{Informe}
+%\subsection{Informes genéricos}
+%\subsubsection{Empresas}
+%\subsubsection{Impuestos}
