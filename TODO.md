@@ -6,3 +6,6 @@
 * Una buena explicación y relación de como funcionan los registros de caja
 * Información detallada sobre cada informe generado
 * Rellenar la sección Diario de comprobantes.
+
+## Productos
+* Unidades y categorías de unidades de medida

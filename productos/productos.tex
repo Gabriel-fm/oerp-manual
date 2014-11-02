@@ -1,0 +1,250 @@
+%
+% Este archivo es parte de un documento sobre OpenERP/Odoo creado
+% y distribuido bajo licencia GNU Free Documen License v1.3.
+%
+% Para obtener la fuente e información más detallada, visite
+% https://github.com/Gabriel-fm/oerp-manual
+%
+% Copyright (c) 2014 - Gabriel Franco
+%
+
+\chapter{Productos}
+\label{productos}
+Los productos y sus fichas son accesibles desde distintos puntos de la aplicación. También, según desde el punto en el que se acceda, se le acompañará un menú u otro para modificar categorias u otros elementos. Se verá cada una de estas opciones a continuación y se especificará como acceder a las mismas.
+
+En primer lugar se analiza la ficha de los productos y sus distintas pestañas.
+
+\section{Ficha de producto}
+
+En la figura \ref{pro:ficha} se puede observar la vista de la ficha. En esta se puede apreciar un área con distinas pestañas para la diversa información del producto y un área superior, más pequeña, que será fija y que contendrá menos opciones.
+
+En este área superior es donde se introducirá el \textbf{Nombre del producto} y bajo el mismo se puede especificar la \textbf{Categoría} a la que pertenece dicho producto. Una explicación más detallada sobre las categorías se da en la sección \ref{pro:categorias}.
+
+\figura{productos/img/pro_ficha.png}
+{Visión principal de una ficha}
+{pro:ficha}
+
+Bajo el nombre y la categoría aparecen las opciones \textbf{Puede ser vendido} y \textbf{Puede ser comprado}. La selección de cada uno de ellos, permitirá que estos productos se puedan añadir a líneas de presupuestos, pedidos de venta y documentos de venta en genral, y/o a líneas de compras respectivamente. El caso típico son los productos que se utilizan para construir/fabricar los productos que se van a vender. Estos productos, equivalentes a materias primas, tendrán marcada la opción de venta, no de compra. Con esta selección se podrán comprar esas \emph{materias primas}, pero no podrán venderse, evitando así errores e inflar la lista de productos de venta.
+
+En la parte superior derecha de este área general, se observan dos botones: \textbf{Pedir abastecimiento} y \textbf{Puntos de pedidos}. A través del primer botón lo que se hará es solicitar el abastecimiento del producto en el almacén indicado -- puede verse la ventana emergente que aparece al hacer click sobre este botón en la figura \ref{pro:pedirAbastecimiento}. Para este pedido puede especificarse el almacén donde se recibirá/guardará -- que muestra el \textbf{Almacén} por defecto del producto según las configuraciones que se verán después, la \textbf{Cantidad} de productos a abastecer. La \textbf{Fecha prevista} es calculada a partir de los datos del producto, aunque cabe la posibilidad de variarla en este menú.
+
+Con el botón \textbf{Puntos de pedidos} se mostrará un listado de las ordenes de reabastecimiento (y se podrán crear aquí también) tal como se describe en la sección \ref{alm:reabastecimiento}
+
+\figura{productos/img/pro_pedirAbastecimiento.png}
+{Diálogo para solicitar abastecimiento de un producto}
+{pro:pedirAbastecimiento}
+
+\subsection{Pestaña de Información}
+Esta pestaña se puede ver en la figura \ref{pro:ficha} de la sección anterior. En este caso hay unas pocas opciones que se ennumeran a continuación:
+
+\begin{itemize}
+  \item \textbf{Tipo de producto} -- Indica que tipo de producto es, siempre en relación con su posibilidad de stockage, por defecto:
+    \begin{itemize}
+      \item \textbf{Almacenable} -- Permitirá hacer un seguimiento del stock de este producto
+      \item \textbf{Servicio} y \textbf{Consumible} -- Para este caso no hará diferenciación en cuanto al stock -- no se hará un 
+                   seguimiento. La diferencia aquí estriba en que define si el producto es físico o es un servicio.
+     \end{itemize}
+  \item \textbf{Precio de venta} -- Precio de catálogo, es el que será de venta para los clientes.
+  \item \textbf{Referencia interna} -- Código de referencia de uso interno en la empresa.
+  \item \textbf{Código EAN13} -- Código EAN13 internacional, el código de barras usualmente.
+\end{itemize}
+
+También existe un área de notas en la zona inferior que permite insertar texto descriptivo sobre el producto ya sean anotaciones o descripción de sus caracteristicas.
+
+
+\subsection{Pestaña de Abastecimientos}
+
+En esta pestaña se encontrará la información relativa a como se obtiene el producto desde el proveedor hasta la empresa. Existen distintas opciones. Para empezar, hay que puntualizar que son el \textbf{Método de abastecimiento} y el \textbf{Método de suministro}
+
+\figura{productos/img/pro_pesAbastecimiento.png}
+{Pestaña de Abastecimiento de un producto}
+{pro:pesAbastecimiento}
+
+El \textbf{Método de abastecimiento} puntualizará que se hará cuando el producto se añada en una línea de venta, señalará \textbf{cómo} se obtendrá el producto, por parte de la empresa, \textbf{para el envío al cliente}. Las dos opciones disponibles son:
+
+\begin{itemize}
+  \item \textbf{Obtener desde stock} -- Cuando un producto que tiene seleccionada esta opción, se añade a una línea de venta, el producto
+               se obtendrá del stock del almacén. En el caso de que no haya stock en el almacén, el encargado de almacén se encargará de
+               poner el producto en disposición par ael envío y, si no hubiera producto en stock, el encargado deberá crear la orden de
+               compra del mismo
+  \item \textbf{Obtener desde pedido} -- Al añadir en una línea de compra un producto marcado con esta opción, lo que se hará es crear
+               automáticamente la orden de compra del mismo (o la orden de fabricación) independientemente del stock. 
+\end{itemize}
+
+El \textbf{Método de suministro} indicará \textbf{cómo} se obtendrá el producto desde el proveedor a la empresa, sin tener en consideración al cliente. Las dos opciones son:
+
+\begin{itemize}
+  \item \textbf{Fabricar} -- Cuando se vaya a obtener stock para el producto, lo que se va a hacer es fabricarlo.
+  \item \textbf{Comprar} -- Para obtener el stock del producto, se compra el mismo sin necesidad de fabricarlo, a un proveedor.
+\end{itemize}
+
+Se ha de notar que estas dos opciones son totalmente complementarias. La primera está relacionada con cómo se sirve el producto ante un pedido y el segundo se relaciona a cómo se obtiene el producto (independientemente de si existe un pedido o no)
+
+El \textbf{Precio de coste} que aparece a continuación es el precio del producto a la hora de comprarlo, se utiliza como precio base en los pedidos de compras.
+
+Junto a \textbf{Retrasos} aparece el campo \textbf{Plazo de entrega de fabricación}. En este se introduce el tiempo (en días) necesario para producir -- cuanso se fabrica -- el producto.
+
+La opción \textbf{Activo} indica si el producto está activo o no. En el caso de que no lo esté, no aparecerá en las busquedas ni desplegables para ser insertado en líneas de pedidos (tanto de compras como de ventas). Siempre puede buscarse a través de la pantalla de \emph{Productos} y cambiar esta opción.
+
+El área inferior está dedicada a los \textbf{Proveedores}. Abajo del todo existe un área de texto donde introducir notas que se insertarán automáticamente en las solicitudes de presupuesto a los proveedores. Encima se encuentra la lista de proveedores para este producto. Se pueden añadir tantos como sea necesario, para cada uno que se añada desde aquí aparecerá una ventan flotante para la inserción de sus datos (figura \ref{pro:addProveedor})
+
+\figura{productos/img/pro_addProveedor.png}
+{Ventana para crear un Proveedor}
+{pro:addProveedor}
+
+El campo \textbf{Proveedor} se utiliza para marcar que empresa (añadida anteriormente o que es posible crear insitu) se utilizará como proveedor de este producto. El campo \textbf{Nombre producto proveedor} permite añadir un nombre personalizado para este producto en el proveedor dado de manera que aparezca en los presupuestos de compra con el nombre adecuado según a quién se dirija. De igual forma se utiliza el campo \textbf{Código producto proveedor}, pudiendo personalizar el código del mismo en función de a quién se realice el pedido.
+
+La \textbf{Cantidad mínima} representa cuál es la cantidad mínima de compra del producto en el distribuidor. De igual forma el \textbf{Tiempo de entrega} señala cuantos días, desde el momento de confirmación de recepción del pedido por parte del proveedor, se tarda en ser entregado a la empresa.
+
+El último campo a señalar es \textbf{Secuencia}. Este indica la prioridad del proveedor en la lista de todos los proveedores. A numeración menor (más cercana a 1) más arriba se encontrará en la lista de proveedores, y cuanto más se acerque a 10, más al final se encontrará.
+
+
+
+
+
+\subsection{Pestaña de Inventario}
+
+\figura{productos/img/pro_pesInventario.png}
+{Pestaña de Inventario de productos}
+{pro:pesInventario}
+
+La figura \ref{pro:pesInventario} se observan todos los campos disponibles en la pestaña \textbf{Inventario} de las fichas de los productos divididas en varias secciones.
+
+La parte \textbf{Existencias y variaciones esperadas} muestra información sobre el stock del producto en los almacenes de la empresa. 
+
+\begin{itemize}
+
+  \item \textbf{Stock real} -- Muestra el stock del producto que existen físicamente en el almacén.
+  \item \textbf{Entrante} -- Número de items del producto que se esperen que entren en stock, que se encuentran pedidos pero no se encuentran físicamente aún en almacén.
+  \item \textbf{Saliente} -- Cantidad de productos a los que se les va a dar salida. Es el número de items de este producto que se encuentran en líneas de ventas que aún no se han servido desde el almacén.
+  \item \textbf{Stock virtual} -- Es el resultado de combinar todos los anteriores, es la cantidad prevista de stock de este producto cuando se terminen los pedidos de compra y de venta. En este caso, este número representa: Stock real - Saliente + Entrante
+
+\end{itemize}
+
+
+El \textbf{Estado} indica como se encuentra este producto en su ciclo de vida, de manera que se puede informar a aquel que esté viendo la ficha sobre si este producto es estable o no (si está en desarrollo) o si debe intentar evitar venderlo (Fin de ciclo de vida) o lo que se consensue a nivel de empresa para cada uno de estos valores. Se puede elegir entre las siguientes propiedades:
+
+\begin{itemize}
+\item En desarrollo
+\item Normal
+\item Fin de ciclo de vida
+\item Obsoleto
+\end{itemize}
+
+De igual forma, el \textbf{Responsable de producto} representa el usuario (a nivel interno de la empresa) que se encarga del producto.
+
+La zona de \textbf{Ubicación de almacenamiento} da una serie de campos que sirve para indicar la localización física del stock de este producto en el almacén, pudiendo indicar el \emph{estante}, la \emph{fila} y la \emph{caja}
+
+El área de \textbf{Pesos} sirve para indicar el \textbf{Volumen} del producto (en $m^3$), su \textbf{Peso bruto} medido en Kg.y su \textbf{Peso neto} también en Kg.
+
+Las \textbf{Propiedades de las ubicaciones parte recíproca} permite especificar las ubicaciones para el producto dentro del almacén. Para más información sobre estos campos y su significado, ver la sección \ref{moduloAlmacen}
+
+
+
+
+
+\subsection{Pestaña de Ventas}
+
+Esta pestaña permite afinar ciertos datos sobre las condiciones de venta del producto. La pestaña se puede ver íntegra en la figura \ref{pro:pesVentas} 
+
+\figura{productos/img/pro_pesVentas.png}
+{Captura de la pestaña \emph{Ventas} de la ficha de productos}
+{pro:pesVentas}
+
+La \textbf{Garantía} es expresada en meses y el \textbf{Plazo de entrega al cliente} se mide en días.
+
+El listado inferior permite introducir información sobre el empaquetamiento del producto. Se pueden insertar tantas líneas como sean necesarias según como se encuentre empaquetado el producto, identificando cada una de estas \emph{unidades logísticas} por su código EAN. La información que se añade en cada una de estas líneas de unidades logísticas se ve en la figura \ref{pro:addPaquete}.
+
+\figura{productos/img/pro_addPaquete.png}
+{Diálogo para añadir información sobre paquetes}
+{pro:addPaquete}
+
+El campo \textbf{EAN} permite introducir el código identificatorio de esta forma de empaquetamiento. La \textbf{Cantidad por paquete} indica el \emph{número total} de productos que se encontraran en este empaquetamiento, y el \textbf{Peso paquete vacío} indica el peso del paquete sin tener en cuenta el peso de los productos introducidos en el mismo. El \textbf{Tipo de empaquetado} indica y describe como es el paquete, hay más detalle sobre estos elementos en la sección \ref{pro:empaquetado}.
+
+La \textbf{paletización} se utiliza para indicar la organización interna del paquete. El \textbf{Número de capas} señala cuantas capas de productos se encontrarán en el paquete, los \textbf{Paquetes por piso} indican el total de productos en cada capa del paquete y el \textbf{Total peso paquete} sirve para indicar en Kg. el peso total del paquete con los productos dentro incluidos.
+
+Las \textbf{Dimensiones del palet} se dan en metros y van a dar la información sobre la geometría externa del producto ya empaquetado.
+
+En el campo \textbf{Descripción} se pueden dar detalles sobre el empaquetado que sea necesario puntualizar.
+
+
+Volviendo a la \emph{Pestaña de ventas}, un último campo a destacar es el de \textbf{Descripción para las ofertas}, que son notas que se añadirán a posteriori en los presupuestos de venta. Puede servir para puntualizar detalles sobre la garantía o detalles en el proceso de venta.
+
+
+
+
+\subsection{Pestaña de Contabilidad}
+\figura{productos/img/pro_pesContabilidad.png}
+{Pestaña de información sobre la contabilidad de un producto}
+{pro:pesContabilidad}
+
+En esta pestaña se introducirá la información relativa al tratamiento contable de los movimientos realizados con el producto. Esta pestaña tan solo tiene 4 campos (figura \ref{pro:pesContabilidad})
+
+Dos de los campos son \textbf{Cuenta de ingresos} y \textbf{Cuenta de gastos} que indican a que cuentas se hará referencia en los apuntes y asientos contables cuando haya movimientos relacionados con este producto. Pueden dejarse las cuentas por defecto -- que serán las genéricas -- o bien se pueden utilizar subcuentas para controlar los gastos e ingresos de cada producto.
+
+Los campos \textbf{Impuestos cliente} e \textbf{Impuestos proveedor} sirven para introducir los impuestos por defecto para estos productos. El tener estos impuestos configurados aquí, hace que al añadir el producto en una línea de venta o de compra, añada automáticamente el impuesto relacionado, evitando el tener que introducir los impuestos de cada producto cada vez que son añadidos en una transacción.
+
+
+
+
+
+\section{Categorías de productos}
+\label{pro:categorias}
+
+Los productos se pueden clasificar en \textbf{categorías} las cuales pueden organizarse en forma de árbol tal y como se aprecia en la figura \ref{pro:listaCategorias}. En esa misma figura se aprecia como se muestran las categorías y el árbol de categorías. Aquellas en las que en su nombre aparece la barra inclinada $/$ indican la ruta en el árbol de categorías, siendo el elemento a la izquierda de la barra padre del elemento a la derecha.
+
+\figura{productos/img/pro_categorias.png}
+{Listado de categorías de productos}
+{pro:listaCategorias}
+
+Las propiedades de las categorías se pueden observar al pulsar sobre ellas, mostrando de esa manera la ficha individual de la categoría. Un ejemplo es el que se aprecia en la figura \ref{pro:crearCategoria}
+
+\figura{productos/img/pro_crearCategoria.png}
+{Datos de una categoría}
+{pro:crearCategoria}
+
+
+El \textbf{Nombre} será el identificador de la categoría, y la \textbf{Categoría padre} será una categoría ya existente previamente, que convertirá la categoría en edición en hija de la indicada en tal campo. El \textbf{tipo de categoría} indica que tipo de categoría es, pudiendo elegir entre dos tipos:
+
+\begin{itemize}
+  \item \textbf{Normal} -- Una categoría normal que puede incluir productos dentro de la misma.
+  \item \textbf{Vista} -- Es una categoría especial que no contendrá productos, pero si más categorías. Es un tipo de categoría orientada a la organización de la estructura del árbol de categorías.
+\end{itemize}
+
+Las \textbf{Propiedades de la cuenta} actuan de igual manera que las cuentas que aparecían en la pestaña de contabilidad del producto. Todos los productos qaue caigan en el interior de dicha categoría, apuntarán sus movimientos contables dentro de las cuentas indicadas en función de si es un movimiento de venta o de compra. A menos que los productos que estén en esta categoría tengan sus propios datos sobre las cuentas contables, se utilizarán los indicados aquí.
+
+Las \textbf{Cuenta de entrada de existencias}, \textbf{Cuenta de salida de existencias}, \textbf{Cuenta de valoración de existencias} y \textbf{Diario de existencias} son las cuentas, a nivel de stock en las que se apuntarán los movimientos de stock de los productos de esta categoría (para más detalle sobre esto, ver la sección \ref{moduloAlmacen}.
+
+
+
+
+
+\section{Empaquetado}
+\label{pro:empaquetado}
+
+La pantalla de \textbf{empaquetado} es accesible como una opción del menú desplegable \emph{Productos} en el área de \emph{Configuración} de la barra de opciones de la izquierda. Es accesible sólo cuando se tienen los permisos adecuados.
+
+Al acceder a esta opción, se presenta un listado de tipos de paquete como se ve en la figura \ref{pro:paquete}. Cada uno de estos elementos es accesible haciendo click sobre los mismos, presentando la configuración de los mismos, consistente en dos opciones tal y como se observa en la figura \ref{pro:paqIndividual}
+
+\figura{productos/img/pro_paquete.png}
+{Listado de paquetes disponibles}
+{pro:paquete}
+
+\figura{productos/img/pro_paqIndividual.png}
+{Configuración de los datos de un paquete}
+{pro:paqIndividual}
+
+Las opciones configurables son el \textbf{Nombre}, que sirve a la vez como descripción del paquete como se ve en las figuras anteriores, y el \textbf{Tipo} de empaquetado. El tipo permite elegir entre las siguientes opciones:
+
+\begin{itemize}
+\item Unidad
+\item Paquete
+\item Caja
+\item Palet
+\end{itemize}
+
+A pesar de una apariencia de pocas opciones y utilidad, definir de esta manera el empaquetamiento sirve para que, cuando se configuren los productos, los tamaños según paquetes, palets u otro tipo de empaquetamiento esté estandarizado y no quepa lugar a error o a utilizar empaquetamientos no disponibles o no estandarizados por la empresa.
+
+
+%\section{Unidades de medida}
+%\subsection{Categorías de unidades de medida}
