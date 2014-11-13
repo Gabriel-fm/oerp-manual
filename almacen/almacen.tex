@@ -690,6 +690,7 @@ Con OpenERP se pueden realizar planificaciones de aprovisionamiento. Se pueden d
 un máximo de stock de productos. Esta configuración se realiza de manera individual para cada producto.
 
 \subsection{Ejecutar planificadores}
+\label{planificadores}
 Esta opción disparará todas las reglas de planificación de stock. En caso de que haya productos que no cumplas con las reglas del mínimo
 establecido, generará automáticamente ordenes de abastecimiento que podrán ser comprobadas a mano y, a su vez, generará presupuestos de compra
 en el módulo de compras con los artículos que no cumplan los mínimos.
@@ -748,5 +749,38 @@ Los campos que se pueden apreciar en esta sección son:
   \item \textbf{Último error} -- Especifica que es lo que ha provocado la excepción de abastecimiento de manera que permita buscar una solución.
 \end{itemize}
 
-\section{Reglas de reabastecimiento -- TODO}
+
+
+\section{Configuración del módulo}
+Con los subsiguientes menús se puede realizar una configuración más personalizada de algunos de los parámetros del módulo de almacén.
+
+\subsection{Reglas de reabastecimiento}
 \label{alm:reabastecimiento}
+
+A través de esta opción se presentará un menú que permitirá la inserción de reglas de reabastecimiento. Tales reglas consisten en la inserción de una cantidad mínima y máxima de cada elemento del almacén. En el momento en el que el \emph{stock virtual} se situa \textbf{por debajo} de un nivel mínimo establecido, se generará automáticamente un abastecimiento para que el stock del producto sea el especificado a través de la cantidad máxima.
+
+Puede crearse tantas reglas de reabastecimiento como sean necesarias, en la figura \ref{alm:lista-reabast}.
+
+\figura{almacen/img/rea_list.png}
+{Listado de reglas de reabastecimiento}
+{alm:lista-reabast}
+
+A través de la vista de listado de las reglas de reabastecimiento se puede ver rápidamente que productos se encuentran con reglas de reabastecimiento y las cantidades mínimas y máximas de los mismos.
+
+La ficha individual sobre la información se aprecia en la siguiente figura (\ref{alm:rea-individual})
+
+\figura{almacen/img/rea_individual.png}
+{Ficha individual de producto}
+{alm:rea-individual}
+
+El campo \textbf{Nombre} será el identificador único de esta orden. Será lo que permitirá organizar los pedidos, habitualmente se utiliza un prefijo con una numeración como se ve en el ejemplo. 
+
+En el campo \textbf{producto} se introducirá el producto para el que se está creando y para el que se aplicará la regla de reabastecimiento.
+
+Los campos bajo el texto \textbf{Reglas} indican la \textbf{cantidad mínima} -- que indica cual es el límite para el stock virtual a partir del que se realizará una orden de pedido --, la \textbf{cantidad máxima} que será la cantidad a alcanzar cuando se realice el proceso de reabastecimiento y el \textbf{Múltiplo de la cantidad}, que será a que cifra se redondeará el pedido en el caso de que se utilicen cifras con decimales para el producto.
+
+En el área de \textbf{Varios} se podrá acceder, mediante un enlace, al \textbf{Último abastecimiento} realizado y podrá activarse o desactivarse la orden de reabastecimiento con la casilla \textbf{Activo}. La utilidad de desactivar las ordenes son validas para evitar que se realicen los pedidos del producto sin borrar la orden para, en caso de necesidad, vovler a reactivarla en cualquier momento sin haber llegado a perderla.
+
+El listado que se encuentra bajo el texto \textbf{Órdenes de abastecimiento a procesar} muestra las ordenes disponibles en el sistema que están listas para ser procesadas -- como su propio nombre indica --, relacionados con el producto y su reabastecimiento.
+
+Hay que recordar que para generar estas ordenes de pedido a través de las ordenes de reabastecimiento, hay que hacer uso periodico de la opción \textbf{Ejecutar planificadores} del menú del módulo de almacén, eligiendo la opción \textbf{Regla de stock mínima automática}, tal como se indica en la sección \ref{planificadores}.
